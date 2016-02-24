@@ -48,6 +48,16 @@ public class TestTheaterService extends AbstractJUnit4SpringContextTests {
 	}
 
 	/**
+	 * Test for lower case input.
+	 */
+	@Test
+	public void testGetTheaterByNameLowerCase() {
+		Theater theater = ts.getTheaterByName("amc mercado");
+		System.out.println(theater);
+		Assert.assertEquals("AMC Mercado", theater.getName());
+	}
+
+	/**
 	 * Test negative test case, when a return is null.
 	 */
 	@Test

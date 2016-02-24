@@ -40,7 +40,7 @@ public class TheaterHardCodedRepositoryImpl implements TheaterRepository {
 	@Override
 	public Theater getTheaterByName(String name) {
 		for (Theater theater : theaterList) {
-			if (theater.getName().equals(name)) {
+			if (theater.getName().equalsIgnoreCase(name)) {
 				return theater;
 			}
 		}

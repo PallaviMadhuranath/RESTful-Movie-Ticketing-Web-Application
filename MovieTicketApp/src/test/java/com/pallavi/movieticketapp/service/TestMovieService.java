@@ -56,6 +56,16 @@ public class TestMovieService extends AbstractJUnit4SpringContextTests {
 	}
 
 	/**
+	 * Test for lower case input.
+	 */
+	@Test
+	public void testGetMovieByNameLowerCase() {
+		Movie movie = ms.getMovieByName("titanic");
+		System.out.println(movie);
+		Assert.assertEquals("Titanic", movie.getName());
+	}
+
+	/**
 	 * Test negative test case, when a return is null.
 	 */
 	@Test

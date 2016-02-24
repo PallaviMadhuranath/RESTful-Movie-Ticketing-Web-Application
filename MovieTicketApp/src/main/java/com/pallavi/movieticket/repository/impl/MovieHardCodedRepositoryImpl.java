@@ -39,7 +39,7 @@ public class MovieHardCodedRepositoryImpl implements MovieRepository {
 	@Override
 	public Movie getMovieByName(String name) {
 		for (Movie movie : movieList) {
-			if (movie.getName().equals(name)) {
+			if (movie.getName().equalsIgnoreCase(name)) {
 				return movie;
 			}
 
