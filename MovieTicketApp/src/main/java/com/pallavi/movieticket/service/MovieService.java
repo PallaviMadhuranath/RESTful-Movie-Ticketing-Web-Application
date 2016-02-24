@@ -16,7 +16,7 @@ public interface MovieService {
 	/**
 	 * This is a movie service method returns list of all movies
 	 * 
-	 * @return - List<Movie>
+	 * @return - List
 	 */
 	List<Movie> getAllMovies();
 

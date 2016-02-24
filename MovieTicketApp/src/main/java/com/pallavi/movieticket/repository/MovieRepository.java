@@ -25,7 +25,7 @@ public interface MovieRepository {
 	/**
 	 * This method returns list of movies.
 	 * 
-	 * @return - List<Movie>
+	 * @return - List
 	 */
 	List<Movie> getAllMovies();
 

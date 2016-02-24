@@ -16,7 +16,7 @@ public interface TheaterRepository {
 	/**
 	 * This method returns list of theaters.
 	 * 
-	 * @return - List<Theater>
+	 * @return - List
 	 */
 	List<Theater> getAllTheaters();
 

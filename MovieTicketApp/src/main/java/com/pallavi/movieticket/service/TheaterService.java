@@ -16,7 +16,7 @@ public interface TheaterService {
 	/**
 	 * This is a theater service method returns list of all theaters
 	 * 
-	 * @return - List<Theater>
+	 * @return - List
 	 */
 	List<Theater> getAllTheaters();
 
