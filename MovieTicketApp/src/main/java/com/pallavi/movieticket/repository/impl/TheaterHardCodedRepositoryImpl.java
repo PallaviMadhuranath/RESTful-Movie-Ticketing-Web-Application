@@ -9,16 +9,27 @@ import com.pallavi.movieticket.entity.Theater;
 import com.pallavi.movieticket.entity.impl.TheaterImpl;
 import com.pallavi.movieticket.repository.TheaterRepository;
 
+/**
+ * This class implements TheaterRepository interface. All the methods are
+ * defined here. it contains hard coded values of theater.
+ * 
+ * @author pallavidas
+ *
+ */
 @Component
 public class TheaterHardCodedRepositoryImpl implements TheaterRepository {
-	
+
 	private List<Theater> theaterList;
-	
-	public TheaterHardCodedRepositoryImpl(){
+
+	/**
+	 * Constructor initialization. Initializes theater list with hard coded
+	 * values.
+	 */
+	public TheaterHardCodedRepositoryImpl() {
 		theaterList = new ArrayList<Theater>();
-		
-		theaterList.add(new TheaterImpl("AMC Mercado", "Santa Clara", 20));
-		theaterList.add(new TheaterImpl("Century Cinemas", "Mountain View", 20));
+
+		theaterList.add(new TheaterImpl("AMC Mercado", "Santa Clara"));
+		theaterList.add(new TheaterImpl("Century Cinemas", "Mountain View"));
 	}
 
 	@Override
@@ -33,7 +44,7 @@ public class TheaterHardCodedRepositoryImpl implements TheaterRepository {
 				return theater;
 			}
 		}
-		
+
 		return null;
 	}
 

@@ -9,13 +9,20 @@ import com.pallavi.movieticket.entity.Movie;
 import com.pallavi.movieticket.repository.MovieRepository;
 import com.pallavi.movieticket.service.MovieService;
 
+/**
+ * This class implements Movie service interface. All the methods are defined
+ * here.
+ * 
+ * @author pallavidas
+ *
+ */
 @Service
 public class MovieServiceImpl implements MovieService {
-	
+
 	@Autowired
 	private MovieRepository movieRepo;
 
-	public List<Movie> getAllMovies() {		
+	public List<Movie> getAllMovies() {
 		return movieRepo.getAllMovies();
 
 	}
