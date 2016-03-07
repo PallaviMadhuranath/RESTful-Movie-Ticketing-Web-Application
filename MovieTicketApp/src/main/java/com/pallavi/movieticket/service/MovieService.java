@@ -2,6 +2,8 @@ package com.pallavi.movieticket.service;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import com.pallavi.movieticket.entity.Movie;
 
 /**

@@ -1,10 +1,12 @@
 package com.pallavi.movieticket.repository.impl;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Component;
 
+import org.hibernate.Criteria;
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import com.pallavi.movieticket.entity.Movie;
 import com.pallavi.movieticket.entity.impl.MovieImpl;
 import com.pallavi.movieticket.repository.MovieRepository;
@@ -16,29 +18,29 @@ import com.pallavi.movieticket.repository.MovieRepository;
  * @author pallavidas
  *
  */
-@Component
-public class MovieHardCodedRepositoryImpl implements MovieRepository {
 
-	Movie movieObj;
-	private List<Movie> movieList;
+@Component
+public class MovieRepositoryImpl implements MovieRepository {
+
+	@Autowired
+	private SessionFactory sessionFactory;
 
 	/**
 	 * Constructor initialization. Initializes movie list with hard coded
 	 * values.
 	 */
-	public MovieHardCodedRepositoryImpl() {
-
-		movieList = new ArrayList<Movie>();
-
-		movieList.add(new MovieImpl("Titanic", "English", "Romance"));
-		movieList.add(new MovieImpl("Piku", "Hindi", "Comedy"));
-		movieList.add(new MovieImpl("Rangitaranga", "Kannada", "Thriller"));
+	public MovieRepositoryImpl() {
 
 	}
 
-	@Override
+	// @Override
+	@SuppressWarnings("unchecked")
 	public Movie getMovieByName(String name) {
-		for (Movie movie : movieList) {
+
+		Criteria crit = this.sessionFactory.getCurrentSession().createCriteria(MovieImpl.class);
+		List<Movie> movies = crit.list();
+
+		for (Movie movie : movies) {
 			if (movie.getName().equalsIgnoreCase(name)) {
 				return movie;
 			}
@@ -47,9 +49,14 @@ public class MovieHardCodedRepositoryImpl implements MovieRepository {
 		return null;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<Movie> getAllMovies() {
-		return movieList;
+
+		Criteria crit = this.sessionFactory.getCurrentSession().createCriteria(MovieImpl.class);
+		List<Movie> movies = crit.list();
+
+		return movies;
 	}
 
 }

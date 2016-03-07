@@ -29,4 +29,6 @@ public interface Movie {
 	 * @return - String
 	 */
 	String getGenre();
+
+	int getID();
 }
