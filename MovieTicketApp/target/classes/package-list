@@ -1,7 +1,0 @@
-com.pallavi.movieticket.entity
-com.pallavi.movieticket.entity.impl
-com.pallavi.movieticket.repository
-com.pallavi.movieticket.repository.impl
-com.pallavi.movieticket.service
-com.pallavi.movieticket.service.impl
-com.pallavi.movieticketapp.service
