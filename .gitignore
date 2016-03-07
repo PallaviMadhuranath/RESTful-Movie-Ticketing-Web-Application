@@ -1,5 +1,11 @@
-MovieTicketApp/target
-.settings
-.project
+# Eclipse
 .classpath
+.project
+.settings/
+
+# Mac
 .DS_Store
+
+# Maven
+log/
+*/target/*
