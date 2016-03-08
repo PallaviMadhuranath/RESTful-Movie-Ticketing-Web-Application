@@ -1,8 +1,10 @@
 package com.pallavi.movieticket.repository.impl;
 
-import java.util.ArrayList;
 import java.util.List;
 
+import org.hibernate.Criteria;
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.pallavi.movieticket.entity.Theater;
@@ -18,28 +20,34 @@ import com.pallavi.movieticket.repository.TheaterRepository;
  */
 @Component
 public class TheaterHardCodedRepositoryImpl implements TheaterRepository {
-
-	private List<Theater> theaterList;
+	
+	@Autowired
+	private SessionFactory sessionFactory;
+	
 
 	/**
 	 * Constructor initialization. Initializes theater list with hard coded
 	 * values.
 	 */
 	public TheaterHardCodedRepositoryImpl() {
-		theaterList = new ArrayList<Theater>();
-
-		theaterList.add(new TheaterImpl("AMC Mercado", "Santa Clara"));
-		theaterList.add(new TheaterImpl("Century Cinemas", "Mountain View"));
+		
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<Theater> getAllTheaters() {
-		return theaterList;
+		Criteria crit = this.sessionFactory.getCurrentSession().createCriteria(TheaterImpl.class);
+		List<Theater> theaters = crit.list();
+		return theaters;
 	}
 
 	@Override
 	public Theater getTheaterByName(String name) {
-		for (Theater theater : theaterList) {
+		
+		Criteria crit = this.sessionFactory.getCurrentSession().createCriteria(TheaterImpl.class);
+		@SuppressWarnings("unchecked")
+		List<Theater> theaters = crit.list();
+		for (Theater theater : theaters) {
 			if (theater.getName().equalsIgnoreCase(name)) {
 				return theater;
 			}

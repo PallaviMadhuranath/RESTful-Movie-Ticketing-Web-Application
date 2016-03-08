@@ -2,6 +2,8 @@ package com.pallavi.movieticket.service.impl;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,6 +19,7 @@ import com.pallavi.movieticket.service.TheaterService;
  *
  */
 @Service
+@Transactional
 public class TheaterServiceImpl implements TheaterService {
 
 	@Autowired

@@ -1,11 +1,14 @@
 package com.pallavi.movieticketapp.service;
 
+import javax.transaction.Transactional;
+
 import org.junit.Assert;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.AbstractJUnit4SpringContextTests;
 import com.pallavi.movieticket.entity.Theater;
+import com.pallavi.movieticket.service.TheaterService;
 import com.pallavi.movieticket.service.impl.TheaterServiceImpl;
 
 /**
@@ -15,10 +18,11 @@ import com.pallavi.movieticket.service.impl.TheaterServiceImpl;
  *
  */
 @ContextConfiguration(locations = { "classpath:spring-context.xml" })
+@Transactional
 public class TestTheaterService extends AbstractJUnit4SpringContextTests {
 
 	@Autowired
-	private TheaterServiceImpl ts;
+	private TheaterService ts;
 
 	/**
 	 * Tests positive case of number of theaters present in the list.
@@ -42,9 +46,9 @@ public class TestTheaterService extends AbstractJUnit4SpringContextTests {
 	 */
 	@Test
 	public void testGetTheaterByNamePositive() {
-		Theater theater = ts.getTheaterByName("AMC Mercado");
+		Theater theater = ts.getTheaterByName("AMC Marcado");
 		System.out.println(theater);
-		Assert.assertEquals("AMC Mercado", theater.getName());
+		Assert.assertEquals("AMC Marcado", theater.getName());
 	}
 
 	/**
@@ -52,9 +56,9 @@ public class TestTheaterService extends AbstractJUnit4SpringContextTests {
 	 */
 	@Test
 	public void testGetTheaterByNameLowerCase() {
-		Theater theater = ts.getTheaterByName("amc mercado");
+		Theater theater = ts.getTheaterByName("amc marcado");
 		System.out.println(theater);
-		Assert.assertEquals("AMC Mercado", theater.getName());
+		Assert.assertEquals("AMC Marcado", theater.getName());
 	}
 
 	/**

@@ -22,4 +22,6 @@ public interface Theater {
 	 */
 	String getAddress();
 
+	int getID();
+
 }

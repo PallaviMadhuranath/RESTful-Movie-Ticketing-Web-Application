@@ -1,5 +1,10 @@
 package com.pallavi.movieticket.entity.impl;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
 import com.pallavi.movieticket.entity.Theater;
 
 /**
@@ -9,10 +14,23 @@ import com.pallavi.movieticket.entity.Theater;
  * @author pallavidas
  *
  */
+@Entity
+@Table(name = "theatres")
 public class TheaterImpl implements Theater {
-
+	
+	@Id
+	@Column(name = "Theatre_ID")
+	private int id;
+	
+	@Column(name = "Name")
 	String name;
+	
+	@Column(name = "Address")
 	String address;
+	
+	public TheaterImpl(){
+		
+	}
 
 	/**
 	 * Constructor initialization.
@@ -40,6 +58,12 @@ public class TheaterImpl implements Theater {
 	@Override
 	public String toString() {
 		return "name=" + name + ", address=" + address + "";
+	}
+	
+	
+	@Override
+	public int getID() {
+		return id;
 	}
 
 }
