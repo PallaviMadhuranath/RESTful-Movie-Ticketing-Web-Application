@@ -1,13 +1,21 @@
 package com.pallavi.movieticket.entity.impl;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 import com.pallavi.movieticket.entity.Movie;
+import com.pallavi.movieticket.entity.Theater;
 
 /**
  * This class implements movie interface. All the methods are defined in this
@@ -34,6 +42,12 @@ public class MovieImpl implements Movie {
 
 	@Column(name = "Genre")
 	String genre;
+
+	@ManyToMany(targetEntity = TheaterImpl.class, fetch = FetchType.EAGER)
+	@JoinTable(name = "movies_theatres", joinColumns = {
+			@JoinColumn(name = "movies_movie_id", nullable = false) }, inverseJoinColumns = {
+					@JoinColumn(name = "theatres_theatre_id", nullable = false) })
+	private List<Theater> theaters;
 
 	public MovieImpl() {
 
@@ -81,6 +95,17 @@ public class MovieImpl implements Movie {
 	@Override
 	public int getID() {
 		return id;
+	}
+
+	public List<Theater> getTheaters() {
+		return theaters;
+	}
+
+	public void addgetTheaters(Theater theater) {
+		if (theaters == null) {
+			theaters = new ArrayList<Theater>();
+		}
+		theaters.add(theater);
 	}
 
 }

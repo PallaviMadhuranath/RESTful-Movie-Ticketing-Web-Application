@@ -30,5 +30,7 @@ public interface MovieService {
 	 * @return - Movie
 	 */
 	Movie getMovieByName(String name);
+	
+	List<Movie> getMovieByTheater(String name);
 
 }

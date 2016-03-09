@@ -1,5 +1,7 @@
 package com.pallavi.movieticket.entity;
 
+import java.util.List;
+
 /**
  * This interface has methods related to theater, like name, address and
  * availability.
@@ -23,5 +25,7 @@ public interface Theater {
 	String getAddress();
 
 	int getID();
+	
+	public List<Movie> getMovies();
 
 }

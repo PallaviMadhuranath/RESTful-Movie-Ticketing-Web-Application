@@ -19,7 +19,7 @@ import com.pallavi.movieticket.repository.TheaterRepository;
  *
  */
 @Component
-public class TheaterHardCodedRepositoryImpl implements TheaterRepository {
+public class TheaterRepositoryImpl implements TheaterRepository {
 	
 	@Autowired
 	private SessionFactory sessionFactory;
@@ -29,7 +29,7 @@ public class TheaterHardCodedRepositoryImpl implements TheaterRepository {
 	 * Constructor initialization. Initializes theater list with hard coded
 	 * values.
 	 */
-	public TheaterHardCodedRepositoryImpl() {
+	public TheaterRepositoryImpl() {
 		
 	}
 

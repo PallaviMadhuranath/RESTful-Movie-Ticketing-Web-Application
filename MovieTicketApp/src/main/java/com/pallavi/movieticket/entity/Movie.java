@@ -1,5 +1,7 @@
 package com.pallavi.movieticket.entity;
 
+import java.util.List;
+
 /**
  * Movie interface has methods related to movie, like name of the movie,
  * language and Genre,
@@ -31,4 +33,6 @@ public interface Movie {
 	String getGenre();
 
 	int getID();
+	
+	public List<Theater> getTheaters();
 }

@@ -32,8 +32,8 @@ public class TestMovieService extends AbstractJUnit4SpringContextTests {
 	 */
 	@Test
 	public void testGetMoviesPositive() {
-		System.out.println(ms.getAllMovies());
-		Assert.assertEquals(1, ms.getAllMovies().size());
+		// System.out.println(ms.getAllMovies());
+		Assert.assertEquals(2, ms.getAllMovies().size());
 
 	}
 
@@ -42,7 +42,7 @@ public class TestMovieService extends AbstractJUnit4SpringContextTests {
 	 */
 	@Test
 	public void testGetMoviesNegative() {
-		Assert.assertNotEquals(2, ms.getAllMovies().size());
+		Assert.assertNotEquals(3, ms.getAllMovies().size());
 	}
 
 	/**
@@ -52,10 +52,7 @@ public class TestMovieService extends AbstractJUnit4SpringContextTests {
 	@Test
 	public void testGetMovieByNamePositive() {
 		Movie movie = ms.getMovieByName("God Father");
-		System.out.println(movie);
 		Assert.assertEquals("God Father", movie.getName());
-		// Assert.assertEquals("English", movie.getLanguage());
-		// Assert.assertEquals("Romance", movie.getGenre());
 	}
 
 	/**
@@ -65,7 +62,7 @@ public class TestMovieService extends AbstractJUnit4SpringContextTests {
 	@Test
 	public void testGetMovieByNameLowerCase() {
 		Movie movie = ms.getMovieByName("god father");
-		System.out.println(movie);
+		// System.out.println(movie);
 		Assert.assertEquals("God Father", movie.getName());
 	}
 
@@ -75,8 +72,18 @@ public class TestMovieService extends AbstractJUnit4SpringContextTests {
 	@Test
 	public void testGetMovieByNameNegative() {
 		Movie movie = ms.getMovieByName("Deadpool");
-		System.out.println(movie);
 		Assert.assertNull(movie);
+	}
+
+	@Test
+	public void testMovieByTheaterPositive() {
+		Assert.assertEquals(2, ms.getMovieByTheater("AMC Marcado").size());
+		System.out.println(ms.getMovieByTheater("AMC Marcado"));
+	}
+
+	@Test
+	public void testMovieByTheaterNegative() {
+		Assert.assertNotEquals(3, ms.getMovieByTheater("AMC Marcado").size());
 	}
 
 }

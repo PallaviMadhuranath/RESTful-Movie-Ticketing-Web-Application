@@ -29,4 +29,6 @@ public interface TheaterService {
 	 */
 	Theater getTheaterByName(String name);
 
+	List<Theater> getTheaterByMovie(String movieName);
+
 }
