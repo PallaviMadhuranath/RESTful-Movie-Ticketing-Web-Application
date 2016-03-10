@@ -75,16 +75,28 @@ public class MovieImpl implements Movie {
 		return name;
 	}
 
+	public void setName(String movieName) {
+		this.name = movieName;
+	}
+
 	@Override
 	public String getLanguage() {
 
 		return language;
 	}
 
+	public void setLanguage(String language) {
+		this.language = language;
+	}
+
 	@Override
 	public String getGenre() {
 
 		return genre;
+	}
+
+	public void setGenre(String genre) {
+		this.genre = genre;
 	}
 
 	@Override

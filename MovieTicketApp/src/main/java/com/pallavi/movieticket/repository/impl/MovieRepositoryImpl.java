@@ -9,7 +9,6 @@ import org.springframework.stereotype.Component;
 
 import com.pallavi.movieticket.entity.Movie;
 import com.pallavi.movieticket.entity.impl.MovieImpl;
-import com.pallavi.movieticket.entity.impl.TheaterImpl;
 import com.pallavi.movieticket.repository.MovieRepository;
 
 /**
@@ -59,7 +58,5 @@ public class MovieRepositoryImpl implements MovieRepository {
 
 		return movies;
 	}
-	
-	
 
 }

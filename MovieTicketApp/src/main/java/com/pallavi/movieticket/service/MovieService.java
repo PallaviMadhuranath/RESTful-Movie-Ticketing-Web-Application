@@ -2,8 +2,6 @@ package com.pallavi.movieticket.service;
 
 import java.util.List;
 
-import javax.transaction.Transactional;
-
 import com.pallavi.movieticket.entity.Movie;
 
 /**
@@ -30,7 +28,7 @@ public interface MovieService {
 	 * @return - Movie
 	 */
 	Movie getMovieByName(String name);
-	
+
 	List<Movie> getMovieByTheater(String name);
 
 }

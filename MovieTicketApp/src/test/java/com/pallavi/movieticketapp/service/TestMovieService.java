@@ -11,7 +11,6 @@ import org.springframework.test.context.junit4.AbstractJUnit4SpringContextTests;
 
 import com.pallavi.movieticket.entity.Movie;
 import com.pallavi.movieticket.service.MovieService;
-import com.pallavi.movieticket.service.impl.MovieServiceImpl;
 
 /**
  * This class has methods used for unit testing of movie service.
