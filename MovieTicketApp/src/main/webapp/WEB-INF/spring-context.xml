@@ -12,7 +12,7 @@
 
 	<context:annotation-config />
 	<context:component-scan base-package="com.pallavi"/>
-	<context:property-placeholder location="properties/database.properties" />
+	<context:property-placeholder location="classpath:properties/database.properties" />
 	
 	<bean id="dataSource"
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
