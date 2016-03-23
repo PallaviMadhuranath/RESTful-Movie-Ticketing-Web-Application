@@ -32,11 +32,11 @@ public class TestMovieResource {
 		
 	}*/
 	
-	@Test
+	/*@Test
 	public void testGetMovieParamsJson(){
 		Response response =	target.request().accept(MediaType.APPLICATION_JSON).get();
 		verifyNotFound(response);
-	}
+	}*/
 	
 	private void verifyNotFound(Response response) {
 		//HttpError error = response.readEntity(HttpError.class);
