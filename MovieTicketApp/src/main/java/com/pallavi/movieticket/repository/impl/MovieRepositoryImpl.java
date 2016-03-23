@@ -1,11 +1,14 @@
 package com.pallavi.movieticket.repository.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.Criteria;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.util.StringUtils;
 
 import com.pallavi.movieticket.entity.Movie;
 import com.pallavi.movieticket.entity.impl.MovieImpl;
@@ -24,6 +27,8 @@ public class MovieRepositoryImpl implements MovieRepository {
 
 	@Autowired
 	private SessionFactory sessionFactory;
+	
+	private List<Movie> movieList;
 
 	/**
 	 * Constructor initialization. Initializes movie list with hard coded
@@ -35,7 +40,27 @@ public class MovieRepositoryImpl implements MovieRepository {
 
 	// @Override
 	@SuppressWarnings("unchecked")
+	public List<Movie> getMoviesByName(String name) {
+		movieList = new ArrayList<Movie>();
+
+		Criteria crit = this.sessionFactory.getCurrentSession().createCriteria(MovieImpl.class);
+		if(!StringUtils.isEmpty(name)){
+			crit.add(Restrictions.like("name", "%"+name+"%"));
+		}
+		
+		List<Movie> movies = crit.list();
+
+		for (Movie movie : movies) {
+			if (movie.getName().equalsIgnoreCase(name)) {
+				movieList.add(movie);
+			}
+
+		}
+		return movieList;
+	}
+	
 	public Movie getMovieByName(String name) {
+		movieList = new ArrayList<Movie>();
 
 		Criteria crit = this.sessionFactory.getCurrentSession().createCriteria(MovieImpl.class);
 		List<Movie> movies = crit.list();
@@ -48,7 +73,22 @@ public class MovieRepositoryImpl implements MovieRepository {
 		}
 		return null;
 	}
+	
+	
 
+	
+	public Movie getMovieById(String id){
+		Criteria crit = this.sessionFactory.getCurrentSession().createCriteria(MovieImpl.class);
+		List<Movie> movies = crit.list();
+		for (Movie movie : movies) {
+			if (movie.getID().equalsIgnoreCase(id)) {
+				return movie;
+			}
+
+		}
+		return null;
+	}
+	
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Movie> getAllMovies() {

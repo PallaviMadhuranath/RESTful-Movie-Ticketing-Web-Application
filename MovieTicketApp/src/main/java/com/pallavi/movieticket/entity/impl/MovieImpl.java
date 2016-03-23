@@ -32,7 +32,7 @@ public class MovieImpl implements Movie {
 	@Id
 	@Column(name = "Movie_id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+	private String id;
 
 	@Column(name = "Title")
 	String name;
@@ -63,7 +63,8 @@ public class MovieImpl implements Movie {
 	 * @param genre
 	 *            - movie genre(Drama, Thriller etc)
 	 */
-	public MovieImpl(String name, String language, String genre) {
+	public MovieImpl(String id, String name, String language, String genre) {
+		this.id = id;
 		this.name = name;
 		this.language = language;
 		this.genre = genre;
@@ -99,13 +100,17 @@ public class MovieImpl implements Movie {
 		this.genre = genre;
 	}
 
-	@Override
-	public String toString() {
-		return "name=" + name + ", language=" + language + ", genre=" + genre + "";
+	public void setId(String id) {
+		this.id = id;
 	}
 
 	@Override
-	public int getID() {
+	public String toString() {
+		return "id=" + id + ", name=" + name + ", language=" + language + ", genre=" + genre + " ";
+	}
+
+	@Override
+	public String getID() {
 		return id;
 	}
 

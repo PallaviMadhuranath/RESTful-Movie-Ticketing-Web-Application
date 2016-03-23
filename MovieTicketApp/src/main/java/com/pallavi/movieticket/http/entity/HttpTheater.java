@@ -7,19 +7,28 @@ import com.pallavi.movieticket.entity.Theater;
 
 @XmlRootElement(name = "theater")
 public class HttpTheater {
+	
+	@XmlElement
+	public String id;
 
 	@XmlElement
 	public String name;
 
 	@XmlElement
-	public String address;
+	public String city;
+	
+	@XmlElement
+	public String zipCode;
 
 	protected HttpTheater() {
 	}
 
 	public HttpTheater(Theater theater) {
+		
+		this.id = theater.getID();
 		this.name = theater.getName();
-		this.address = theater.getAddress();
+		this.city = theater.getCity();
+		this.zipCode = theater.getZipCode();
 
 	}
 

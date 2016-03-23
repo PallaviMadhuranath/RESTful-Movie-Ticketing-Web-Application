@@ -28,4 +28,8 @@ public interface TheaterRepository {
 	 * @return - Theater
 	 */
 	Theater getTheaterByName(String name);
+	
+	List<Theater> getTheatersByName(String name);
+	
+	Theater getTheaterByID(String id);
 }

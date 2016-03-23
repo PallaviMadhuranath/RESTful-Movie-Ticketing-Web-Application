@@ -1,6 +1,5 @@
 package com.pallavi.movieticket.entity.impl;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -26,13 +25,16 @@ public class TheaterImpl implements Theater {
 
 	@Id
 	@Column(name = "Theatre_ID")
-	private int id;
+	private String id;
 
 	@Column(name = "Name")
 	String name;
 
-	@Column(name = "Address")
-	String address;
+	@Column(name = "City")
+	String city;
+	
+	@Column(name = "zipCode")
+	String zipCode;
 
 	@ManyToMany(fetch = FetchType.EAGER, mappedBy = "theaters", targetEntity = MovieImpl.class)
 	private List<Movie> movies;
@@ -49,9 +51,12 @@ public class TheaterImpl implements Theater {
 	 * @param address
 	 *            - theater address
 	 */
-	public TheaterImpl(String name, String address) {
+	public TheaterImpl(String id,String name, String address, String zipCode) {
+		this.id = id;
 		this.name = name;
-		this.address = address;
+		this.city = address;
+		this.zipCode = zipCode;
+		
 	}
 
 	@Override
@@ -60,29 +65,34 @@ public class TheaterImpl implements Theater {
 	}
 
 	@Override
-	public String getAddress() {
-		return address;
+	public String getCity() {
+		return city;
 	}
 
 	@Override
 	public String toString() {
-		return "name=" + name + ", address=" + address + "";
+		return "name=" + name + ", city=" + city + ", zipcode=" + zipCode + "";
 	}
 
 	@Override
-	public int getID() {
+	public String getID() {
 		return id;
 	}
-
+	
 	public List<Movie> getMovies() {
 		return movies;
 	}
 
-	public void addMovie(Movie movie) {
+	@Override
+	public String getZipCode() {
+		return zipCode;
+	}
+
+	/*public void addMovie(Movie movie) {
 		if (movies == null) {
 			movies = new ArrayList<Movie>();
 		}
 		movies.add(movie);
-	}
+	}*/
 
 }

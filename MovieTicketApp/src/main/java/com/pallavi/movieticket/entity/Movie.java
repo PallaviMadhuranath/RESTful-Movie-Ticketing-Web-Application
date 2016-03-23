@@ -32,7 +32,7 @@ public interface Movie {
 	 */
 	String getGenre();
 
-	int getID();
+	String getID();
 	
 	public List<Theater> getTheaters();
 }

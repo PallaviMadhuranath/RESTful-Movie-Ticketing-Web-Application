@@ -22,9 +22,11 @@ public interface Theater {
 	 * 
 	 * @return - String
 	 */
-	String getAddress();
+	String getCity();
 
-	int getID();
+	String getID();
+	
+	String getZipCode();
 	
 	public List<Movie> getMovies();
 

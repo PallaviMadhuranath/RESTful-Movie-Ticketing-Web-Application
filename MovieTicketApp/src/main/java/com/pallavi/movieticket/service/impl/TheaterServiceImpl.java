@@ -44,4 +44,15 @@ public class TheaterServiceImpl implements TheaterService {
 		
 		return movieRepo.getMovieByName(movieName).getTheaters();
 	}
+
+	@Override
+	public Theater getTheaterByID(String id) {
+		return theaterRepo.getTheaterByID(id) ;
+	}
+
+	@Override
+	public List<Theater> getTheatersByName(String name) {
+		
+		return theaterRepo.getTheatersByName(name);
+	}
 }

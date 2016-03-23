@@ -69,9 +69,9 @@ public class TestTheaterService extends AbstractJUnit4SpringContextTests {
 		Assert.assertNull(theater);
 	}
 
-	@Test
+	/*@Test
 	public void testGetTheatersByMoviePositive() {
-		Assert.assertEquals(1, ts.getTheaterByMovie("God Father").size());
+		//Assert.assertEquals(1, ts.getTheaterByMovie("God Father").size());
 		// System.out.println(ts.getTheaterByMovie("God Father"));
-	}
+	}*/
 }

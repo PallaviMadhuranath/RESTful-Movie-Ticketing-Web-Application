@@ -27,8 +27,12 @@ public interface MovieService {
 	 *            - movie name
 	 * @return - Movie
 	 */
+	List<Movie> getMoviesByName(String name);
+	
 	Movie getMovieByName(String name);
 
+	Movie getMovieById(String id);
+	
 	List<Movie> getMovieByTheater(String name);
 
 }

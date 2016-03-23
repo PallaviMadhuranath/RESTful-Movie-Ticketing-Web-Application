@@ -28,6 +28,10 @@ public interface TheaterService {
 	 * @return - Theater
 	 */
 	Theater getTheaterByName(String name);
+	
+	List<Theater> getTheatersByName(String name);
+	
+	Theater getTheaterByID(String id);
 
 	List<Theater> getTheaterByMovie(String movieName);
 

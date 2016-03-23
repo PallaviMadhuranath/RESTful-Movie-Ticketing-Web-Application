@@ -1,6 +1,8 @@
 package com.pallavi.movieticketapp.service;
 
 import org.junit.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.transaction.Transactional;
 
@@ -22,6 +24,7 @@ import com.pallavi.movieticket.service.MovieService;
 @ContextConfiguration(locations = { "classpath:spring-context.xml" })
 @Transactional
 public class TestMovieService extends AbstractJUnit4SpringContextTests {
+	private Logger logger = LoggerFactory.getLogger(getClass());
 
 	@Autowired
 	private MovieService ms;
@@ -33,6 +36,7 @@ public class TestMovieService extends AbstractJUnit4SpringContextTests {
 	public void testGetMoviesPositive() {
 		// System.out.println(ms.getAllMovies());
 		Assert.assertEquals(2, ms.getAllMovies().size());
+		
 
 	}
 
@@ -74,7 +78,7 @@ public class TestMovieService extends AbstractJUnit4SpringContextTests {
 		Assert.assertNull(movie);
 	}
 
-	@Test
+	/*@Test
 	public void testMovieByTheaterPositive() {
 		Assert.assertEquals(2, ms.getMovieByTheater("AMC Marcado").size());
 		System.out.println(ms.getMovieByTheater("AMC Marcado"));
@@ -83,6 +87,6 @@ public class TestMovieService extends AbstractJUnit4SpringContextTests {
 	@Test
 	public void testMovieByTheaterNegative() {
 		Assert.assertNotEquals(3, ms.getMovieByTheater("AMC Marcado").size());
-	}
+	}*/
 
 }

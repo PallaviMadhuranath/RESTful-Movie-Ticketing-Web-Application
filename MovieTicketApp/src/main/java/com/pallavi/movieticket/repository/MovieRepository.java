@@ -20,7 +20,11 @@ public interface MovieRepository {
 	 *            - movie name
 	 * @return - Movie
 	 */
+	List<Movie> getMoviesByName(String name);
+	
 	Movie getMovieByName(String name);
+	
+	Movie getMovieById(String id);
 
 	/**
 	 * This method returns list of movies.

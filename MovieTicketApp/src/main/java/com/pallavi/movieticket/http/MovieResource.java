@@ -6,6 +6,7 @@ import java.util.List;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
@@ -20,6 +21,7 @@ import com.pallavi.movieticket.entity.Movie;
 import com.pallavi.movieticket.http.entity.HttpMovie;
 import com.pallavi.movieticket.service.MovieService;
 import com.pallavi.movieticket.service.exception.MovieTicketException;
+
 
 //specifies a relative path for the resource
 @Path("/movies")
@@ -37,21 +39,27 @@ public class MovieResource {
 	private MovieService movieService;
 
 	@GET
-	@Path("/movieName")
+	@Path("/{movieId}")	
 	@Wrapped(element = "movies")
-	public HttpMovie getMovieByName(@QueryParam("title") String name) throws MovieTicketException {
-		logger.info("movie name:", name);
-		Movie movie = movieService.getMovieByName(name);
-		return new HttpMovie(movie);
-
+	public HttpMovie getMovieByName(@PathParam("movieId") String id) {
+		logger.info("movie id:", id);
+		try{
+			Movie movie = movieService.getMovieById(id);
+			return new HttpMovie(movie);
+		}
+		catch(Exception e) {
+			System.out.println("Movie Id " + id + " not found");
+		}
+		return null;
 	}
 
 	@GET
 	@Path("/")
 	@Wrapped(element = "movies")
-	public List<HttpMovie> getAllMovies() throws MovieTicketException {
-		logger.info("All movie names");
-		List<Movie> movieFound = movieService.getAllMovies();
+	public List<HttpMovie> getMoviesSearch(@QueryParam("movieName") String movieName) throws MovieTicketException {
+		System.out.println("ENteres");
+		logger.info("Movie search names="+movieName);
+		List<Movie> movieFound = movieService.getMoviesByName(movieName);
 		List<HttpMovie> returnList = new ArrayList<>(movieFound.size());
 		for (Movie movie : movieFound) {
 			returnList.add(new HttpMovie(movie));
@@ -59,5 +67,18 @@ public class MovieResource {
 		return returnList;
 
 	}
+	
+	/*@GET
+	@Wrapped(element = "movies")
+	public List<HttpMovie> getTheaterByMovie(@QueryParam("name") String name){
+		logger.info("theater names");
+		
+		List<Movie> movieFound = movieService.getMovieByTheater(name);
+		List<HttpMovie> returnList = new ArrayList<>(movieFound.size());
+		for (Movie movie : movieFound) {
+			returnList.add(new HttpMovie(movie));
+		}
+		return returnList;
+	} */
 
 }

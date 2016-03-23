@@ -6,6 +6,7 @@ import java.util.List;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
@@ -16,7 +17,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.pallavi.movieticket.entity.Movie;
 import com.pallavi.movieticket.entity.Theater;
+import com.pallavi.movieticket.http.entity.HttpMovie;
 import com.pallavi.movieticket.http.entity.HttpTheater;
 import com.pallavi.movieticket.service.TheaterService;
 import com.pallavi.movieticket.service.exception.MovieTicketException;
@@ -38,21 +41,29 @@ public class TheaterResource {
 	private TheaterService theaterService;
 
 	@GET
-	@Path("/theaterName")
+	@Path("/{theaterId}")
 	@Wrapped(element = "theaters")
-	public HttpTheater getMovieByName(@QueryParam("name") String name) throws MovieTicketException {
-		logger.info("Theater name:", name);
-		Theater theater = theaterService.getTheaterByName(name);
-		return new HttpTheater(theater);
+	public HttpTheater getTheaterByID(@PathParam("theaterId") String id){
+		logger.info("Theater id:", id);
+		
+		try {
+			Theater theater = theaterService.getTheaterByID(id);
+			return new HttpTheater(theater);
+		}
+		catch(Exception e) {
+			System.out.println("Theater Id " + id + " not found");
+		}
+		return null;
+		
 
 	}
 
 	@GET
 	@Path("/")
 	@Wrapped(element = "theaters")
-	public List<HttpTheater> getAllTheaters() throws MovieTicketException {
-		logger.info("All theater names");
-		List<Theater> theaterFound = theaterService.getAllTheaters();
+	public List<HttpTheater> getTheaterSearch(@QueryParam("theaterName") String theaterName){
+		logger.info("Movie search names="+theaterName);
+		List<Theater> theaterFound = theaterService.getTheatersByName(theaterName);
 		List<HttpTheater> returnList = new ArrayList<>(theaterFound.size());
 		for (Theater theater : theaterFound) {
 			returnList.add(new HttpTheater(theater));
@@ -60,6 +71,5 @@ public class TheaterResource {
 		return returnList;
 
 	}
-
 
 }
