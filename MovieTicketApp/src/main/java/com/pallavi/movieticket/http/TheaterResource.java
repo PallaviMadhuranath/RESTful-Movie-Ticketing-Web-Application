@@ -61,7 +61,7 @@ public class TheaterResource {
 	@GET
 	@Path("/")
 	@Wrapped(element = "theaters")
-	public List<HttpTheater> getTheaterSearch(@QueryParam("theaterName") String theaterName){
+	public List<HttpTheater> getTheaterSearch(@QueryParam("theaterName") String theaterName) throws MovieTicketException{
 		logger.info("Movie search names="+theaterName);
 		List<Theater> theaterFound = theaterService.getTheatersByName(theaterName);
 		List<HttpTheater> returnList = new ArrayList<>(theaterFound.size());
