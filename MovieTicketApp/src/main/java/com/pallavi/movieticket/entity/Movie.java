@@ -32,6 +32,11 @@ public interface Movie {
 	 */
 	String getGenre();
 
+	/**
+	 * Movie Id
+	 * @return
+	 * - String
+	 */
 	String getID();
 	
 	public List<Theater> getTheaters();
