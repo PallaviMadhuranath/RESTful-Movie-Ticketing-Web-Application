@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.AbstractJUnit4SpringContextTests;
 import com.pallavi.movieticket.entity.Theater;
+import com.pallavi.movieticket.entity.impl.TheaterImpl;
 import com.pallavi.movieticket.service.TheaterService;
 
 /**
@@ -37,7 +38,7 @@ public class TestTheaterService extends AbstractJUnit4SpringContextTests {
 	 */
 	@Test
 	public void testGetTheatersNegative() {
-		//Assert.assertNotEquals(4, ts.getAllTheaters().size());
+		// Assert.assertNotEquals(4, ts.getAllTheaters().size());
 	}
 
 	/**
@@ -65,13 +66,31 @@ public class TestTheaterService extends AbstractJUnit4SpringContextTests {
 	 */
 	@Test
 	public void testGetTheaterByNameNegative() {
-		Theater theater = ts.getTheaterByName("AMC Cupertino");
+		Theater theater = ts.getTheaterByName("AMC Cupertin");
 		Assert.assertNull(theater);
 	}
 
-	/*@Test
-	public void testGetTheatersByMoviePositive() {
-		//Assert.assertEquals(1, ts.getTheaterByMovie("God Father").size());
-		// System.out.println(ts.getTheaterByMovie("God Father"));
-	}*/
+	@Test
+	/**
+	 * Test for adding new movie to movie repository
+	 */
+	public void addAndGetTheaters() {
+		TheaterImpl newTheater = new TheaterImpl();
+		newTheater.setName("AMC Cupertino");
+		newTheater.setCity("Cupertino");
+		newTheater.setZipCode("95014");
+
+		Theater theaterAdded = ts.addTheater(newTheater);
+		Assert.assertEquals(newTheater.getID(), theaterAdded.getID());
+		Assert.assertEquals(newTheater.getName(), theaterAdded.getName());
+		Assert.assertEquals(newTheater.getCity(), theaterAdded.getCity());
+		Assert.assertEquals(newTheater.getZipCode(), theaterAdded.getZipCode());
+
+	}
+
+	/*
+	 * @Test public void testGetTheatersByMoviePositive() {
+	 * //Assert.assertEquals(1, ts.getTheaterByMovie("God Father").size()); //
+	 * System.out.println(ts.getTheaterByMovie("God Father")); }
+	 */
 }

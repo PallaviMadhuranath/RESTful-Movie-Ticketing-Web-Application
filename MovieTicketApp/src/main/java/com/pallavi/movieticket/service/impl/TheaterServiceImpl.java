@@ -15,6 +15,7 @@ import com.pallavi.movieticket.repository.MovieRepository;
 import com.pallavi.movieticket.repository.TheaterRepository;
 import com.pallavi.movieticket.service.TheaterService;
 import com.pallavi.movieticket.service.exception.ErrorCode;
+import com.pallavi.movieticket.service.exception.InvalidFieldException;
 import com.pallavi.movieticket.service.exception.MovieTicketException;
 
 /**
@@ -27,6 +28,9 @@ import com.pallavi.movieticket.service.exception.MovieTicketException;
 @Service
 @Transactional
 public class TheaterServiceImpl implements TheaterService {
+	
+	private static final int MAX_NAME_LENGTH = 45;
+	private static final int MAX_ZIPCODE_LENGTH = 6;
 
 	@Autowired
 	private TheaterRepository theaterRepo;
@@ -59,7 +63,7 @@ public class TheaterServiceImpl implements TheaterService {
 	}
 
 	@Override
-	public Theater getTheaterByID(String id) {
+	public Theater getTheaterByID(long id) {
 		return theaterRepo.getTheaterByID(id) ;
 	}
 
@@ -67,5 +71,24 @@ public class TheaterServiceImpl implements TheaterService {
 	public Theater getTheaterByName(String name) {
 		
 		return theaterRepo.getTheaterByName(name);
+	}
+
+	@Override
+	public Theater addTheater(Theater theater) {
+		if(StringUtils.isEmpty(theater.getName()) || theater.getName().length() > MAX_NAME_LENGTH){			
+			throw new InvalidFieldException("Theater name is required");
+		}
+		
+		if(StringUtils.isEmpty(theater.getCity()) || theater.getCity().length()>MAX_NAME_LENGTH){			
+			throw new InvalidFieldException("City name required is required");
+		}
+		
+		if(StringUtils.isEmpty(theater.getZipCode()) || theater.getZipCode().length()>MAX_ZIPCODE_LENGTH){			
+			throw new InvalidFieldException("Genre is required");
+		}
+		
+		//let us hash the pin - TBTF bank does basic MD5	
+		long id =  theaterRepo.addTheater(theater);
+		return getTheaterByID(id);
 	}
 }

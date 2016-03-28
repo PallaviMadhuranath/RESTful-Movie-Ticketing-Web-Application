@@ -31,5 +31,7 @@ public interface TheaterRepository {
 	
 	List<Theater> getTheatersByName(String name);
 	
-	Theater getTheaterByID(String id);
+	Theater getTheaterByID(long id);
+	
+	long addTheater(Theater theater);
 }

@@ -24,7 +24,7 @@ public interface Theater {
 	 */
 	String getCity();
 
-	String getID();
+	long getID();
 	
 	String getZipCode();
 	

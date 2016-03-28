@@ -1,5 +1,7 @@
 package com.pallavi.movieticketapp.repository;
 
+import java.util.List;
+
 import org.junit.Assert;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,12 +28,19 @@ public class TestMovieRepository extends AbstractTransactionalJUnit4SpringContex
 	/**
 	 * Tests for getAllMovies
 	 */
-	/*@Test
+	@Test
 	public void getMovies() {
+		System.out.println("From movie Repo");
+		System.out.println(movieRepo.getAllMovies().size());
+		List<Movie> movies = (movieRepo.getAllMovies());
+		for(Movie movie : movies){
+			System.out.println(movie);
+		}
+		
 
-		Assert.assertEquals(4, movieRepo.getAllMovies().size());
+		//Assert.assertEquals(4, movieRepo.getAllMovies().size());
 
-	}*/
+	}
 
 	/**
 	 * Test for retrieving movie by name

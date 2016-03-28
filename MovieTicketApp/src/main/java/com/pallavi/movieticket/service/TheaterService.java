@@ -31,8 +31,10 @@ public interface TheaterService {
 	
 	List<Theater> getTheatersByName(String name);
 	
-	Theater getTheaterByID(String id);
+	Theater getTheaterByID(long id);
 
 	List<Theater> getTheaterByMovie(String movieName);
+	
+	Theater addTheater(Theater theater);
 
 }

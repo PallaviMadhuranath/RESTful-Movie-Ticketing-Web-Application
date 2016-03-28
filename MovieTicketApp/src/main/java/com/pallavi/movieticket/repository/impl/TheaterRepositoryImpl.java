@@ -42,6 +42,8 @@ public class TheaterRepositoryImpl implements TheaterRepository {
 	public List<Theater> getAllTheaters() {
 		Criteria crit = this.sessionFactory.getCurrentSession().createCriteria(TheaterImpl.class);
 		List<Theater> theaters = crit.list();
+		System.out.println("From Repo Impl");
+		System.out.println(theaters.size());
 		return theaters;
 	}
 
@@ -61,13 +63,13 @@ public class TheaterRepositoryImpl implements TheaterRepository {
 	}
 
 	@Override
-	public Theater getTheaterByID(String id) {
+	public Theater getTheaterByID(long id) {
 		
 		Criteria crit = this.sessionFactory.getCurrentSession().createCriteria(TheaterImpl.class);
 		@SuppressWarnings("unchecked")
 		List<Theater> theaters = crit.list();
 		for (Theater theater : theaters) {
-			if (theater.getID().equalsIgnoreCase(id)) {
+			if (theater.getID() == id) {
 				return theater;
 			}
 		}
@@ -87,6 +89,11 @@ public class TheaterRepositoryImpl implements TheaterRepository {
 		}
 
 		return theaterList;
+	}
+
+	@Override
+	public long addTheater(Theater theater) {
+		return (Long) this.sessionFactory.getCurrentSession().save(theater);
 	}
 
 }
