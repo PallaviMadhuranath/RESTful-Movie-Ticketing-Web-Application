@@ -24,7 +24,7 @@ public interface MovieRepository {
 	
 	Movie getMovieByName(String name);
 	
-	Movie getMovieById(String id);
+	Movie getMovieById(long id);
 
 	/**
 	 * This method returns list of movies.
@@ -32,6 +32,8 @@ public interface MovieRepository {
 	 * @return - List
 	 */
 	List<Movie> getAllMovies();
+	
+	long addMovie(Movie movie);
 	
 	
 	

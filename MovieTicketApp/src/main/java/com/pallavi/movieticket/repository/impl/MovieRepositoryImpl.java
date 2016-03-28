@@ -77,11 +77,11 @@ public class MovieRepositoryImpl implements MovieRepository {
 	
 
 	
-	public Movie getMovieById(String id){
+	public Movie getMovieById(long id){
 		Criteria crit = this.sessionFactory.getCurrentSession().createCriteria(MovieImpl.class);
 		List<Movie> movies = crit.list();
 		for (Movie movie : movies) {
-			if (movie.getID().equalsIgnoreCase(id)) {
+			if (movie.getID() == id) {
 				return movie;
 			}
 
@@ -97,6 +97,11 @@ public class MovieRepositoryImpl implements MovieRepository {
 		List<Movie> movies = crit.list();
 
 		return movies;
+	}
+
+	@Override
+	public long addMovie(Movie movie) {
+		return (Long) this.sessionFactory.getCurrentSession().save(movie);
 	}
 
 }

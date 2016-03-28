@@ -1,17 +1,17 @@
 package com.pallavi.movieticketapp.service;
 
-import org.junit.Test;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import javax.transaction.Transactional;
 
 import org.junit.Assert;
+import org.junit.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.AbstractJUnit4SpringContextTests;
 
 import com.pallavi.movieticket.entity.Movie;
+import com.pallavi.movieticket.entity.impl.MovieImpl;
 import com.pallavi.movieticket.service.MovieService;
 
 /**
@@ -27,7 +27,7 @@ public class TestMovieService extends AbstractJUnit4SpringContextTests {
 	private Logger logger = LoggerFactory.getLogger(getClass());
 
 	@Autowired
-	private MovieService ms;
+	private MovieService movieService;
 
 	/**
 	 * Tests positive case of number of movies present in the list.
@@ -35,7 +35,7 @@ public class TestMovieService extends AbstractJUnit4SpringContextTests {
 	@Test
 	public void testGetMoviesPositive() {
 		// System.out.println(ms.getAllMovies());
-		Assert.assertEquals(2, ms.getAllMovies().size());
+		Assert.assertEquals(3, movieService.getAllMovies().size());
 		
 
 	}
@@ -45,7 +45,7 @@ public class TestMovieService extends AbstractJUnit4SpringContextTests {
 	 */
 	@Test
 	public void testGetMoviesNegative() {
-		Assert.assertNotEquals(3, ms.getAllMovies().size());
+		Assert.assertNotEquals(2, movieService.getAllMovies().size());
 	}
 
 	/**
@@ -54,7 +54,7 @@ public class TestMovieService extends AbstractJUnit4SpringContextTests {
 
 	@Test
 	public void testGetMovieByNamePositive() {
-		Movie movie = ms.getMovieByName("God Father");
+		Movie movie = movieService.getMovieByName("God Father");
 		Assert.assertEquals("God Father", movie.getName());
 	}
 
@@ -64,7 +64,7 @@ public class TestMovieService extends AbstractJUnit4SpringContextTests {
 
 	@Test
 	public void testGetMovieByNameLowerCase() {
-		Movie movie = ms.getMovieByName("god father");
+		Movie movie = movieService.getMovieByName("god father");
 		// System.out.println(movie);
 		Assert.assertEquals("God Father", movie.getName());
 	}
@@ -74,8 +74,23 @@ public class TestMovieService extends AbstractJUnit4SpringContextTests {
 	 */
 	@Test
 	public void testGetMovieByNameNegative() {
-		Movie movie = ms.getMovieByName("Deadpool");
+		Movie movie = movieService.getMovieByName("Deadpool");
 		Assert.assertNull(movie);
+	}
+	
+	@Test
+	public void addAndGetMovie(){
+		MovieImpl newMovie = new MovieImpl();
+		newMovie.setName("Zootapia");
+		newMovie.setLanguage("English");
+		newMovie.setGenre("Animation");
+		
+		Movie added = movieService.addMovie(newMovie);
+		logger.info("movie added "+added);
+		Assert.assertNotEquals(0, added.getID());
+		Assert.assertEquals(newMovie.getName(),added.getName());
+		Assert.assertEquals(newMovie.getLanguage(),added.getLanguage());
+		Assert.assertEquals(newMovie.getGenre(),added.getGenre());			
 	}
 
 	/*@Test

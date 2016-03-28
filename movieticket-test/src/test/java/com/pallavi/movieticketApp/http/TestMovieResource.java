@@ -77,8 +77,9 @@ public class TestMovieResource {
 		});
 
 		Assert.assertEquals(200, response.getStatus());
-		Assert.assertEquals(1, searchResponse.size());
+		Assert.assertEquals(2, searchResponse.size());
 		Assert.assertEquals("English", searchResponse.get(0).language);
+		Assert.assertEquals("Hindi", searchResponse.get(1).language);
 		Assert.assertNotEquals("French", searchResponse.get(0).language);
 	}
 

@@ -37,7 +37,7 @@ public interface Movie {
 	 * @return
 	 * - String
 	 */
-	String getID();
+	long getID();
 	
 	public List<Theater> getTheaters();
 }

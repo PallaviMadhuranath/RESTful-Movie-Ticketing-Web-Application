@@ -41,7 +41,7 @@ public class MovieResource {
 	@GET
 	@Path("/{movieId}")	
 	@Wrapped(element = "movies")
-	public HttpMovie getMovieByName(@PathParam("movieId") String id) {
+	public HttpMovie getMovieByName(@PathParam("movieId") long id) {
 		logger.info("movie id:", id);
 		try{
 			Movie movie = movieService.getMovieById(id);

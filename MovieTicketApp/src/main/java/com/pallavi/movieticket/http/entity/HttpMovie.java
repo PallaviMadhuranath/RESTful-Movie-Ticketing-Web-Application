@@ -12,7 +12,7 @@ import com.pallavi.movieticket.entity.Theater;
 public class HttpMovie {
 	
 	@XmlElement
-	public String id;
+	public long id;
 
 	@XmlElement
 	public String name;
