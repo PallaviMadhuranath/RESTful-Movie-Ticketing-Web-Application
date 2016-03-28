@@ -1,12 +1,10 @@
 package com.pallavi.movieticket.http.entity;
 
-import java.util.List;
 
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
 import com.pallavi.movieticket.entity.Movie;
-import com.pallavi.movieticket.entity.Theater;
 
 @XmlRootElement(name = "movie")
 public class HttpMovie {

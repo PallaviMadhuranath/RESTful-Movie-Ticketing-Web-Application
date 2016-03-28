@@ -26,12 +26,12 @@ public class TestMovieRepository extends AbstractTransactionalJUnit4SpringContex
 	/**
 	 * Tests for getAllMovies
 	 */
-	@Test
+	/*@Test
 	public void getMovies() {
 
 		Assert.assertEquals(4, movieRepo.getAllMovies().size());
 
-	}
+	}*/
 
 	/**
 	 * Test for retrieving movie by name
