@@ -90,7 +90,7 @@ public class MovieResource {
 	@GET
 	@Path("/{theaterName}")
 	@Wrapped(element = "movies")
-	public List<HttpMovie> getTheaterByMovie(@PathParam("theaterName") String name) throws MovieTicketException {
+	public List<HttpMovie> getMovieByTheater(@PathParam("theaterName") String name) throws MovieTicketException {
 		logger.info("theater names");
 
 		List<Movie> movieFound = movieService.getMovieByTheater(name);

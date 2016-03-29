@@ -79,6 +79,7 @@ public class MovieRepositoryImpl implements MovieRepository {
 	
 	public Movie getMovieById(long id){
 		Criteria crit = this.sessionFactory.getCurrentSession().createCriteria(MovieImpl.class);
+		@SuppressWarnings("unchecked")
 		List<Movie> movies = crit.list();
 		for (Movie movie : movies) {
 			if (movie.getID() == id) {

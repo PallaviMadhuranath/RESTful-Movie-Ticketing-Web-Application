@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
-import com.pallavi.movieticket.entity.Movie;
 import com.pallavi.movieticket.entity.Theater;
 import com.pallavi.movieticket.repository.MovieRepository;
 import com.pallavi.movieticket.repository.TheaterRepository;

@@ -104,5 +104,10 @@ public class TestMovieService extends AbstractJUnit4SpringContextTests {
 	public void testMovieByTheaterNegative() {
 		Assert.assertNotEquals(3, movieService.getMovieByTheater("AMC Marcado").size());
 	}
+	
+	/*@Test
+	public void testGetMovieByUserId(){
+		System.out.println(movieService.getMovieById(1));
+	}*/
 
 }

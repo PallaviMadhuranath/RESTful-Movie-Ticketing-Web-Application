@@ -20,6 +20,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.pallavi.movieticket.entity.Movie;
 import com.pallavi.movieticket.entity.Theater;
 import com.pallavi.movieticket.entity.impl.TheaterImpl;
 import com.pallavi.movieticket.http.entity.HttpMovie;
@@ -89,6 +90,20 @@ public class TheaterResource {
 		theater.setCity(httpTheater.city);
 		theater.setZipCode(httpTheater.zipCode);
 		return theater;
+	}
+
+	@GET
+	@Path("/{movieName}")
+	@Wrapped(element = "theaters")
+	public List<HttpTheater> getTheaterByMovie(@PathParam("movieName") String name) throws MovieTicketException {
+		logger.info("theater names");
+
+		List<Theater> theaterFound = theaterService.getTheaterByMovie(name);
+		List<HttpTheater> returnList = new ArrayList<>(theaterFound.size());
+		for (Theater theater : theaterFound) {
+			returnList.add(new HttpTheater(theater));
+		}
+		return returnList;
 	}
 
 }

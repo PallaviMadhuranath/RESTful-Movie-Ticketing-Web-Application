@@ -8,7 +8,6 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.pallavi.movieticket.entity.Movie;
 import com.pallavi.movieticket.entity.Theater;
 import com.pallavi.movieticket.entity.impl.TheaterImpl;
 import com.pallavi.movieticket.repository.TheaterRepository;
@@ -81,6 +80,7 @@ public class TheaterRepositoryImpl implements TheaterRepository {
 		theaterList = new ArrayList<Theater>();
 
 		Criteria crit = this.sessionFactory.getCurrentSession().createCriteria(TheaterImpl.class);
+		@SuppressWarnings("unchecked")
 		List<Theater> theaters = crit.list();
 		for (Theater theater : theaters) {
 			if (theater.getName().equalsIgnoreCase(name)) {

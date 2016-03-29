@@ -36,5 +36,7 @@ public interface MovieService {
 	List<Movie> getMovieByTheater(String name);
 	
 	Movie addMovie(Movie movie);
+	
+	//List<Movie> getMovieByUser(long id);
 
 }
