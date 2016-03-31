@@ -22,7 +22,7 @@
 		<property name="password" value="${jdbc.password}" />
 	</bean>
 	
-	<bean id="sessionFactory"
+	<bean id="sessionFactory" name="mySessionFactory"
 		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
 
 		<property name="packagesToScan">

@@ -1,5 +1,8 @@
 package com.pallavi.movieticket.http.entity;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -19,6 +22,9 @@ public class HttpTheater {
 	
 	@XmlElement
 	public String zipCode;
+	
+	@XmlElement
+	private List<HttpShowtime> showtimes;
 
 	protected HttpTheater() {
 	}
@@ -30,6 +36,12 @@ public class HttpTheater {
 		this.city = theater.getCity();
 		this.zipCode = theater.getZipCode();
 
+	}
+	public List<HttpShowtime> getShowtimes() {
+		if(showtimes == null) {
+			showtimes = new ArrayList<>();
+		}
+		return showtimes;
 	}
 
 }

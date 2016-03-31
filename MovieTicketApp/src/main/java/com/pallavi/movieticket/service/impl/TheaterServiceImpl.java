@@ -27,13 +27,13 @@ import com.pallavi.movieticket.service.exception.MovieTicketException;
 @Service
 @Transactional
 public class TheaterServiceImpl implements TheaterService {
-	
+
 	private static final int MAX_NAME_LENGTH = 45;
 	private static final int MAX_ZIPCODE_LENGTH = 6;
 
 	@Autowired
 	private TheaterRepository theaterRepo;
-	
+
 	@Autowired
 	private MovieRepository movieRepo;
 
@@ -45,49 +45,54 @@ public class TheaterServiceImpl implements TheaterService {
 	public List<Theater> getTheatersByName(String name) {
 		List<Theater> returnList = new ArrayList<>();
 		if (StringUtils.isEmpty(name)) {
-			throw new MovieTicketException(ErrorCode.MISSING_DATA,"no search parameter provided");
-		} 
-		else {
+			throw new MovieTicketException(ErrorCode.MISSING_DATA, "no search parameter provided");
+		} else {
 
 			returnList = theaterRepo.getTheatersByName(name);
 		}
 
-		return returnList;		
+		return returnList;
 	}
-	
+
 	@Override
 	public List<Theater> getTheaterByMovie(String movieName) {
-		
+
 		return movieRepo.getMovieByName(movieName).getTheaters();
 	}
 
 	@Override
 	public Theater getTheaterByID(long id) {
-		return theaterRepo.getTheaterByID(id) ;
+		return theaterRepo.getTheaterByID(id);
 	}
 
 	@Override
 	public Theater getTheaterByName(String name) {
-		
+
 		return theaterRepo.getTheaterByName(name);
 	}
 
 	@Override
 	public Theater addTheater(Theater theater) {
-		if(StringUtils.isEmpty(theater.getName()) || theater.getName().length() > MAX_NAME_LENGTH){			
+		if (StringUtils.isEmpty(theater.getName()) || theater.getName().length() > MAX_NAME_LENGTH) {
 			throw new InvalidFieldException("Theater name is required");
 		}
-		
-		if(StringUtils.isEmpty(theater.getCity()) || theater.getCity().length()>MAX_NAME_LENGTH){			
+
+		if (StringUtils.isEmpty(theater.getCity()) || theater.getCity().length() > MAX_NAME_LENGTH) {
 			throw new InvalidFieldException("City name required is required");
 		}
-		
-		if(StringUtils.isEmpty(theater.getZipCode()) || theater.getZipCode().length()>MAX_ZIPCODE_LENGTH){			
-			throw new InvalidFieldException("Genre is required");
+
+		if (StringUtils.isEmpty(theater.getZipCode()) || theater.getZipCode().length() > MAX_ZIPCODE_LENGTH) {
+			throw new InvalidFieldException("ZipCode is required");
 		}
-		
-		//let us hash the pin - TBTF bank does basic MD5	
-		long id =  theaterRepo.addTheater(theater);
+
+		// let us hash the pin - TBTF bank does basic MD5
+		long id = theaterRepo.addTheater(theater);
 		return getTheaterByID(id);
+	}
+
+	@Override
+	public void deleteTheater(long id) {
+		theaterRepo.deleteTheater(id);
+
 	}
 }

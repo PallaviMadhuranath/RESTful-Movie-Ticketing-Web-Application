@@ -34,4 +34,6 @@ public interface TheaterRepository {
 	Theater getTheaterByID(long id);
 	
 	long addTheater(Theater theater);
+	
+	void deleteTheater(long id);
 }

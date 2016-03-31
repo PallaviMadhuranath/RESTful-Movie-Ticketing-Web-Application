@@ -3,6 +3,7 @@ package com.pallavi.movieticket.http.exception;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
+import com.pallavi.movieticket.service.exception.InvalidFieldException;
 import com.pallavi.movieticket.service.exception.MovieTicketException;
 
 @XmlRootElement(name = "error")
@@ -27,4 +28,5 @@ public class HttpError {
 		message=ex.getMessage();
 		debug=ex.getCause()==null?"":"caused by"+ex.getCause().getMessage();		
 	}
+	
 }

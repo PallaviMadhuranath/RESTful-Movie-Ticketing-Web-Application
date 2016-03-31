@@ -25,9 +25,13 @@ public interface Theater {
 	String getCity();
 
 	long getID();
-	
+
 	String getZipCode();
-	
+
 	public List<Movie> getMovies();
+
+	List<Showtime> getShowtime();
+
+	void addShowtime(Showtime showtime);
 
 }

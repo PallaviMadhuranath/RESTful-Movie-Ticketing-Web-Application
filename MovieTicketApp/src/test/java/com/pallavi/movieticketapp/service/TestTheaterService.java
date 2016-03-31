@@ -29,7 +29,7 @@ public class TestTheaterService extends AbstractJUnit4SpringContextTests {
 	 */
 	@Test
 	public void testGetTheatersPositive() {
-		System.out.println(ts.getAllTheaters());
+		//System.out.println(ts.getAllTheaters());
 		// Assert.assertEquals(3, ts.getAllTheaters().size());
 	}
 
@@ -90,8 +90,8 @@ public class TestTheaterService extends AbstractJUnit4SpringContextTests {
 
 	@Test
 	public void testGetTheatersByMoviePositive() {
-		// Assert.assertEquals(1, ts.getTheaterByMovie("God Father").size()); //
-		System.out.println(ts.getTheaterByMovie("God Father"));
+		//Assert.assertEquals(3, ts.getTheaterByMovie("Piku").size()); //
+		System.out.println(ts.getTheaterByMovie("Piku"));
 	}
 
 }

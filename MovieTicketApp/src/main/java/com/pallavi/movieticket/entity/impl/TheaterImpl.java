@@ -1,7 +1,9 @@
 package com.pallavi.movieticket.entity.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -9,9 +11,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.pallavi.movieticket.entity.Movie;
+import com.pallavi.movieticket.entity.Showtime;
 import com.pallavi.movieticket.entity.Theater;
 
 /**
@@ -39,8 +43,11 @@ public class TheaterImpl implements Theater {
 	@Column(name = "zipCode")
 	String zipCode;
 
-	@ManyToMany(fetch = FetchType.EAGER, mappedBy = "theaters", targetEntity = MovieImpl.class)
+	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "theaters", targetEntity = MovieImpl.class)
 	private List<Movie> movies;
+
+	@OneToMany(mappedBy = "theater", targetEntity = ShowtimeImpl.class, cascade = CascadeType.ALL)
+	private List<Showtime> showtime;
 
 	public TheaterImpl() {
 
@@ -107,9 +114,58 @@ public class TheaterImpl implements Theater {
 		this.id = id;
 	}
 
-	/*
-	 * public void addMovie(Movie movie) { if (movies == null) { movies = new
-	 * ArrayList<Movie>(); } movies.add(movie); }
-	 */
+	@Override
+	public List<Showtime> getShowtime() {
+		return showtime;
+	}
+
+	@Override
+	public void addShowtime(Showtime showtime) {
+		if (this.showtime == null) {
+			this.showtime = new ArrayList<Showtime>();
+		}
+		this.showtime.add(showtime);
+
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((city == null) ? 0 : city.hashCode());
+		result = prime * result + (int) (id ^ (id >>> 32));
+		result = prime * result + ((movies == null) ? 0 : movies.hashCode());
+		result = prime * result + ((name == null) ? 0 : name.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		TheaterImpl other = (TheaterImpl) obj;
+		if (city == null) {
+			if (other.city != null)
+				return false;
+		} else if (!city.equals(other.city))
+			return false;
+		if (id != other.id)
+			return false;
+		if (movies == null) {
+			if (other.movies != null)
+				return false;
+		} else if (!movies.equals(other.movies))
+			return false;
+		if (name == null) {
+			if (other.name != null)
+				return false;
+		} else if (!name.equals(other.name))
+			return false;
+		return true;
+	}
 
 }

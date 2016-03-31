@@ -35,9 +35,6 @@ public interface MovieRepository {
 	
 	long addMovie(Movie movie);
 	
-	
-	
-	
-	
+	void deleteMovie(long id);
 
 }

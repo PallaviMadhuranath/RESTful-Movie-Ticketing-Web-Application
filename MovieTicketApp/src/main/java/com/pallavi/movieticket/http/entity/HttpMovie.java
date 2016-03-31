@@ -1,6 +1,9 @@
 package com.pallavi.movieticket.http.entity;
 
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -21,6 +24,9 @@ public class HttpMovie {
 	@XmlElement
 	public String genre;
 	
+	@XmlElement
+	private List<HttpShowtime> showtimes;
+	
 	//@XmlElement
 	//List<Theater> thearers;
 
@@ -35,7 +41,13 @@ public class HttpMovie {
 		this.language = movie.getLanguage();
 		this.genre = movie.getGenre();
 		//this.thearers = movie.getTheaters();
+	}
 
+	public List<HttpShowtime> getShowtimes() {
+		if(showtimes == null) {
+			showtimes = new ArrayList<>();
+		}
+		return showtimes;
 	}
 
 }

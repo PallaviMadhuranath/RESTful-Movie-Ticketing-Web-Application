@@ -36,5 +36,7 @@ public interface TheaterService {
 	List<Theater> getTheaterByMovie(String movieName);
 	
 	Theater addTheater(Theater theater);
+	
+	void deleteTheater(long id);
 
 }

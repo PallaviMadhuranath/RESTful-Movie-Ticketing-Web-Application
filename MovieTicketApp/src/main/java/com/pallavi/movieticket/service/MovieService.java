@@ -37,6 +37,8 @@ public interface MovieService {
 	
 	Movie addMovie(Movie movie);
 	
+	void deleteMovie(long id);
+	
 	//List<Movie> getMovieByUser(long id);
 
 }

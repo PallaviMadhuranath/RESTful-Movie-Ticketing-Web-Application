@@ -34,10 +34,15 @@ public interface Movie {
 
 	/**
 	 * Movie Id
-	 * @return
-	 * - String
+	 * 
+	 * @return - String
 	 */
 	long getID();
-	
+
 	public List<Theater> getTheaters();
+
+	List<Showtime> getShowtime();
+
+	void addShowtime(Showtime showtime);
+	
 }
